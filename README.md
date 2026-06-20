@@ -17,22 +17,22 @@ This repository showcases a high-fidelity, client-ready multi-page React applica
 ## ✨ Key Features & Enhancements
 
 *   **Multi-Page Subpage Architecture**:
-    *   `/` — Landing page detailing disciplines, member stats, before/after slider, and reviews.
-    *   `/about` — Founders' story (Kumar Mannava) and the core philosophy: *People First, No Shortcuts, Open to Everyone*.
-    *   `/programs` — Overview of fitness disciplines with quick stat cards.
-    *   `/coach` — Full roster of local expert coaches with interactive details.
-    *   `/pricing` — Customized luxury tiers representing the actual members-only pricing model.
-    *   `/contact` — Booking forms, hours of operations, map integrations, and direct consultation lines.
-*   **Legacy Route Backpaths**: Dynamic path fallbacks (`/gym`, `/yoga`, `/kickfit`, `/group-x`) matching the original Framer anchor links, ensuring smooth redirect handling.
-*   **Before/After Comparison Slider**:
+    *   `🏠 /` — Landing page detailing disciplines, member stats, before/after slider, and reviews.
+    *   `📖 /about` — Founders' story (Kumar Mannava) and the core philosophy: *People First, No Shortcuts, Open to Everyone*.
+    *   `🏋️ /programs` — Overview of fitness disciplines (`🏋️ Strength & Powerlifting`, `🏃 HIIT & Cardio`, `🥊 Personal Training`, `🧘 Group Classes`).
+    *   `👥 /coach` — Full roster of local expert coaches with interactive details.
+    *   `💳 /pricing` — Customized luxury tiers representing the actual members-only pricing model.
+    *   `📞 /contact` — Booking forms, hours of operations, map integrations, and direct consultation lines.
+*   **🔄 Legacy Route Backpaths**: Dynamic path fallbacks (`/gym`, `/yoga`, `/kickfit`, `/group-x`) matching the original Framer anchor links, ensuring smooth redirect handling.
+*   **📸 Before/After Comparison Slider**:
     *   A custom drag-to-reveal canvas interface created with `framer-motion` to compare member body recompositions, featuring real weights and fat loss statistics.
-*   **Interactive Coach Profile Modals**:
+*   **🏋️‍♂️ Interactive Coach Profile Modals**:
     *   Meet the actual Jubilee Hills trainers, led by founder **Kumar Mannava** (celebrity trainer behind Jr. NTR's 9.5 kg transformation), Operations Manager **Arvind Rathod**, and local physical therapy experts.
-*   **Verified Google Maps Reviews**:
+*   **⭐ Verified Google Maps Reviews**:
     *   Features a responsive grid displaying real 5-star Google reviews from active club members, accompanied by star rating indicators.
-*   **Biohacking & Advanced Recovery Suite**:
+*   **🧴 Biohacking & Advanced Recovery Suite**:
     *   Showcases high-end private club therapies: Whole-Body Cryotherapy chambers, Red Light Therapy (Photobiomodulation), Hyperbaric Oxygen Therapy (HBOT), and saunas.
-*   **Stat Counter Decimals**:
+*   **📈 Stat Counter Decimals**:
     *   Custom animated hooks for rating count-ups, ensuring the Google Maps **4.9 Rating** animates correctly as a floating-point number.
 
 ---
