@@ -1,4 +1,4 @@
-# 🏛️ THE ONE — Luxury Wellness & Fitness Club
+# 🏋️ THE ONE — Luxury Wellness & Fitness Club
 
 Welcome to the official repository for **THE ONE** — India's premier 5-star, members-only luxury wellness club located in Jubilee Hills, Hyderabad. 
 
