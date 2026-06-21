@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, X } from 'lucide-react';
 
 export default function Hero() {
-  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#0A0A0A]">
@@ -66,7 +63,6 @@ export default function Hero() {
               Elite coaching. Premium equipment. A community that pushes you further — whatever your goal.
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -80,15 +76,6 @@ export default function Hero() {
                 className="btn-red-gradient px-8 py-4 rounded-full font-body text-sm font-semibold uppercase tracking-wide text-white"
               >
                 Get Started Today
-              </button>
-              <button
-                onClick={() => setShowVideo(true)}
-                className="group flex items-center gap-3 px-8 py-4 rounded-full border border-white/30 font-body text-sm font-semibold uppercase tracking-wide text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300"
-              >
-                <span className="flex items-center justify-center w-8 h-8 rounded-full border border-current">
-                  <Play className="w-3 h-3 ml-0.5" />
-                </span>
-                Watch Teaser
               </button>
             </motion.div>
           </div>
@@ -151,34 +138,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Video Modal */}
-      {showVideo && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-          onClick={() => setShowVideo(false)}
-        >
-          <div className="relative w-full max-w-4xl">
-            <button
-              onClick={() => setShowVideo(false)}
-              className="absolute -top-12 right-0 text-white hover:text-[#E53935] transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <video
-              src="/videos/hero-teaser.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full rounded-xl"
-            />
-          </div>
-        </motion.div>
-      )}
     </section>
   );
 }
