@@ -48,82 +48,167 @@ const testimonials = [
   },
 ];
 
+// Split testimonials into two sets for the two scrolling rows
+const row1 = [...testimonials];
+const row2 = [testimonials[4], testimonials[5], testimonials[6], testimonials[0], testimonials[1], testimonials[2], testimonials[3]];
+
+// Custom marquee styles to inject dynamically
+const customStyles = `
+  @keyframes marquee-scroll-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+  .animate-marquee-left {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll-left var(--speed, 45s) linear infinite;
+  }
+  .animate-marquee-right {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll-right var(--speed, 45s) linear infinite;
+  }
+  .marquee-container:hover .animate-marquee-left,
+  .marquee-container:hover .animate-marquee-right {
+    animation-play-state: paused;
+  }
+  .glass-testimonial-card {
+    background: rgba(17, 17, 17, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+`;
+
+interface Testimonial {
+  category: string;
+  quote: string;
+  author: string;
+  role: string;
+}
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  const initials = testimonial.author
+    .split(' ')
+    .map((n) => n[0])
+    .join('');
+
+  return (
+    <div className="glass-testimonial-card w-[320px] sm:w-[420px] shrink-0 p-6 sm:p-8 rounded-2xl flex flex-col justify-between hover:border-[#E53935]/30 hover:shadow-[0_0_25px_rgba(229,57,53,0.08)] transition-all duration-300">
+      <div>
+        {/* Star Rating */}
+        <div className="flex items-center gap-1 mb-4">
+          {[...Array(5)].map((_, i) => (
+            <svg
+              key={i}
+              className="w-3.5 h-3.5 text-[#E53935]"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
+        </div>
+
+        {/* Quote Icon */}
+        <Quote className="w-7 h-7 text-white/5 mb-4" />
+
+        {/* Quote Text */}
+        <p className="font-body text-sm sm:text-base text-white/85 italic leading-relaxed mb-6">
+          {testimonial.quote}
+        </p>
+      </div>
+
+      <div>
+        {/* Divider and Author details */}
+        <div className="flex items-center gap-3 border-t border-white/[0.06] pt-4">
+          <div className="w-10 h-10 rounded-full bg-[#E53935]/10 border border-[#E53935]/20 flex items-center justify-center text-xs font-bold text-[#E53935]">
+            {initials}
+          </div>
+          <div>
+            <p className="font-body text-xs sm:text-sm font-semibold text-white">
+              {testimonial.author}
+            </p>
+            <p className="font-body text-[10px] text-[#666666] font-medium mt-0.5">
+              {testimonial.role}
+            </p>
+          </div>
+          <span className="ml-auto font-body text-[8px] sm:text-[9px] font-bold text-[#E53935] uppercase tracking-wider bg-[#E53935]/5 px-2 py-0.5 rounded border border-[#E53935]/15">
+            {testimonial.category}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Testimonials() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-24 lg:py-32 bg-[#0A0A0A] border-t border-[#111111]/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+    <section className="py-24 lg:py-32 bg-[#0A0A0A] border-t border-[#111111]/30 relative overflow-hidden">
+      <style>{customStyles}</style>
+
+      {/* Subtle ambient gradients */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-[#E53935]/5 rounded-full filter blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-80 h-80 bg-[#E53935]/5 rounded-full filter blur-[150px] pointer-events-none" />
+
+      {/* Side Fading Overlays (Framer-like edge fade out) */}
+      <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-44 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-44 bg-gradient-to-l from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent z-10 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16" ref={ref}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="text-center"
         >
           <p className="font-body text-sm font-medium uppercase tracking-widest text-[#E53935] mb-3">
             / Testimonials
           </p>
           <h2 className="font-heading font-bold uppercase text-section-heading text-white">
-            REAL MEMBERS. <span className="font-italic-accent text-[#E53935]">real reviews.</span>
+            REAL MEMBERS. <span className="font-italic-accent text-[#E53935]">real results.</span>
           </h2>
           <p className="font-body text-base text-[#B0B0B0] max-w-md mx-auto mt-4">
             Hear from our members about their transformation journey and luxury wellness experience at THE ONE.
           </p>
         </motion.div>
+      </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
-              className="bg-[#111111] border border-[#222222] rounded-xl p-8 hover:border-[#E53935]/30 transition-colors flex flex-col justify-between"
-            >
-              <div>
-                {/* 5-Star Rating */}
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-4 h-4 text-[#E53935]"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                
-                {/* Quote Icon */}
-                <Quote className="w-8 h-8 text-[#222222] mb-4" />
+      {/* Loop Carousel Tracks Container */}
+      <div className="space-y-6 w-full overflow-hidden marquee-container relative py-2">
+        {/* Track 1: Scrolling Left */}
+        <div className="flex gap-6 overflow-hidden w-full">
+          <div 
+            className="animate-marquee-left flex gap-6" 
+            style={{ '--speed': '45s' } as React.CSSProperties}
+          >
+            {/* Render two copies of row1 for seamless wrap-around loop */}
+            {[...row1, ...row1].map((item, idx) => (
+              <TestimonialCard key={`track1-${idx}`} testimonial={item} />
+            ))}
+          </div>
+        </div>
 
-                {/* Quote Text */}
-                <p className="font-body text-base text-white/90 italic leading-relaxed mb-6">
-                  {testimonial.quote}
-                </p>
-              </div>
-
-              <div>
-                <div className="border-t border-[#222222] pt-4 flex justify-between items-center">
-                  <div>
-                    <p className="font-body text-sm font-semibold text-white">
-                      {testimonial.author}
-                    </p>
-                    <p className="font-body text-[10px] text-[#666666] font-medium">
-                      {testimonial.role}
-                    </p>
-                  </div>
-                  <span className="font-body text-[9px] font-bold text-[#E53935] uppercase tracking-wider bg-[#E53935]/10 px-2.5 py-0.5 rounded border border-[#E53935]/20">
-                    {testimonial.category}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+        {/* Track 2: Scrolling Right */}
+        <div className="hidden md:flex gap-6 overflow-hidden w-full">
+          <div 
+            className="animate-marquee-right flex gap-6" 
+            style={{ '--speed': '55s' } as React.CSSProperties}
+          >
+            {/* Render two copies of row2 for seamless wrap-around loop */}
+            {[...row2, ...row2].map((item, idx) => (
+              <TestimonialCard key={`track2-${idx}`} testimonial={item} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
