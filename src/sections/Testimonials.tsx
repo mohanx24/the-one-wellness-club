@@ -50,40 +50,8 @@ const testimonials = [
 
 // Split testimonials into two sets for the two scrolling rows
 const row1 = [...testimonials];
-const row2 = [testimonials[4], testimonials[5], testimonials[6], testimonials[0], testimonials[1], testimonials[2], testimonials[3]];
-
-// Custom marquee styles to inject dynamically
-const customStyles = `
-  @keyframes marquee-scroll-left {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes marquee-scroll-right {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0%); }
-  }
-  .animate-marquee-left {
-    display: flex;
-    width: max-content;
-    animation: marquee-scroll-left var(--speed, 45s) linear infinite;
-  }
-  .animate-marquee-right {
-    display: flex;
-    width: max-content;
-    animation: marquee-scroll-right var(--speed, 45s) linear infinite;
-  }
-  .marquee-container:hover .animate-marquee-left,
-  .marquee-container:hover .animate-marquee-right {
-    animation-play-state: paused;
-  }
-  .glass-testimonial-card {
-    background: rgba(17, 17, 17, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-  }
-`;
+const ROW2_OFFSET = 4;
+const row2 = [...testimonials.slice(ROW2_OFFSET), ...testimonials.slice(0, ROW2_OFFSET)];
 
 interface Testimonial {
   category: string;
@@ -95,6 +63,7 @@ interface Testimonial {
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   const initials = testimonial.author
     .split(' ')
+    .filter(Boolean)
     .map((n) => n[0])
     .join('');
 
@@ -153,8 +122,6 @@ export default function Testimonials() {
 
   return (
     <section className="py-24 lg:py-32 bg-[#0A0A0A] border-t border-[#111111]/30 relative overflow-hidden">
-      <style>{customStyles}</style>
-
       {/* Subtle ambient gradients */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-[#E53935]/5 rounded-full filter blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-80 h-80 bg-[#E53935]/5 rounded-full filter blur-[150px] pointer-events-none" />
