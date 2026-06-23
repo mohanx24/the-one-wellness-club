@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,16 +12,27 @@ export default function ContactPage() {
     subject: 'General Inquiry',
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock submit behavior
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', phone: '', subject: 'General Inquiry', message: '' });
-      setSubmitted(false);
-    }, 4000);
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      // Simulate network delay for the mock submission
+      setTimeout(() => {
+        setStatus('success');
+        setTimeout(() => {
+          setFormData({ name: '', email: '', phone: '', subject: 'General Inquiry', message: '' });
+          setStatus('idle');
+        }, 4000);
+      }, 800);
+    } catch {
+      setStatus('error');
+      setErrorMessage('Something went wrong. Please try again or call us directly.');
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -146,7 +159,7 @@ export default function ContactPage() {
                   Send us message
                 </h3>
 
-                {submitted ? (
+                {status === 'success' ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -160,6 +173,20 @@ export default function ContactPage() {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {status === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-start gap-3 bg-red-950/40 border border-red-800/50 rounded-xl px-4 py-3"
+                      >
+                        <AlertCircle className="w-5 h-5 text-[#E53935] shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-sm font-semibold text-white">Submission Failed</p>
+                          <p className="text-xs text-[#B0B0B0] mt-0.5">{errorMessage}</p>
+                        </div>
+                      </motion.div>
+                    )}
+
                     <div className="grid sm:grid-cols-2 gap-4">
                       {/* Name */}
                       <div className="space-y-2">
@@ -254,10 +281,20 @@ export default function ContactPage() {
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 btn-red-gradient py-4 rounded-xl font-body text-xs font-bold uppercase tracking-wide text-white"
+                      disabled={status === 'submitting'}
+                      className="w-full flex items-center justify-center gap-2 btn-red-gradient py-4 rounded-xl font-body text-xs font-bold uppercase tracking-wide text-white disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-4 h-4" />
-                      Submit
+                      {status === 'submitting' ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Submit
+                        </>
+                      )}
                     </button>
                     
                     <p className="text-center text-[10px] text-[#666666] mt-2">

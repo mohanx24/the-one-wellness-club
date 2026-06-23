@@ -1,5 +1,6 @@
-import { useParams, Link } from 'react-router';
+import { useParams, Link, Navigate } from 'react-router';
 import { CheckCircle2 } from 'lucide-react';
+import { handleImageError } from '../lib/utils';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import FaqAccordion from '../components/FaqAccordion';
 
@@ -139,8 +140,13 @@ interface ProgramDetailProps {
 
 export default function ProgramDetail({ id }: ProgramDetailProps) {
   const { id: paramId } = useParams();
-  const programId = id || paramId || 'strength-powerlifting';
-  const program = programsData[programId] || programsData['strength-powerlifting'];
+  const programId = id || paramId;
+
+  if (!programId || !programsData[programId]) {
+    return <Navigate to="/programs" replace />;
+  }
+
+  const program = programsData[programId];
 
   return (
     <div className="bg-[#0A0A0A] text-white">
@@ -151,6 +157,7 @@ export default function ProgramDetail({ id }: ProgramDetailProps) {
             src={program.heroImage}
             alt={program.title}
             className="w-full h-full object-cover"
+            onError={handleImageError}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />

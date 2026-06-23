@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { X, Award, Flame } from 'lucide-react';
+import { handleImageError } from '../lib/utils';
 
 interface Trainer {
   name: string;
@@ -64,6 +65,7 @@ export default function TrainerModal({ trainer, onClose }: TrainerModalProps) {
             src={trainer.image}
             alt={trainer.name}
             className="w-full h-full object-cover"
+            onError={handleImageError}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent md:bg-gradient-to-r" />
         </div>

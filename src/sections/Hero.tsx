@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { handleImageError } from '../lib/utils';
 
 export default function Hero() {
 
@@ -15,6 +16,7 @@ export default function Hero() {
           src="/images/hero-athlete.jpg"
           alt="Athlete training"
           className="w-full h-full object-cover object-center"
+          onError={handleImageError}
         />
         {/* Dark gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent" />
