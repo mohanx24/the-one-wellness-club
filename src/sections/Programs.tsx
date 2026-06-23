@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Clock, Users, Calendar } from 'lucide-react';
+import { handleImageError } from '../lib/utils';
 
 const programs = [
   {
@@ -67,6 +68,7 @@ export default function Programs() {
                   src={program.image}
                   alt={program.title}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  onError={handleImageError}
                 />
               </div>
 

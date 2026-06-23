@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 import { Clock, Users, Flame, Dumbbell } from 'lucide-react';
+import { handleImageError } from '../lib/utils';
 
 const programsList = [
   {
@@ -97,6 +98,7 @@ export default function ProgramsPage() {
                     src={program.image}
                     alt={program.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={handleImageError}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent" />
                 </div>
@@ -195,6 +197,7 @@ export default function ProgramsPage() {
                     src={coach.image}
                     alt={coach.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={handleImageError}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">

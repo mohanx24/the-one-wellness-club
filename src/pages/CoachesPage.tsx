@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { handleImageError } from '../lib/utils';
 import TrainerModal from '../components/TrainerModal';
 
 interface Trainer {
@@ -123,6 +124,7 @@ export default function CoachesPage() {
                     src={coach.image}
                     alt={coach.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={handleImageError}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 space-y-1">
