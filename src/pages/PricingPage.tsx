@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 import { Check, X } from 'lucide-react';
-import FaqAccordion from '../components/FaqAccordion';
+import PageHeader from '../components/shared/PageHeader';
+import FaqSection from '../components/shared/FaqSection';
 
 const plans = [
   {
@@ -80,35 +81,11 @@ const pricingFaqs = [
 export default function PricingPage() {
   return (
     <div className="pt-24 bg-[#0A0A0A] text-white">
-      {/* Header */}
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-bold uppercase tracking-widest text-[#E53935]"
-          >
-            / Membership
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-5xl sm:text-7xl font-bold uppercase tracking-tight mt-4 text-white"
-          >
-            INVEST IN YOURSELF.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="font-body text-base text-[#B0B0B0] max-w-md mx-auto mt-6"
-          >
-            Choose the membership package that matches your standard of training. Cancel anytime.
-          </motion.p>
-        </div>
-      </section>
+      <PageHeader
+        tag="/ Membership"
+        title="INVEST IN YOURSELF."
+        description="Choose the membership package that matches your standard of training. Cancel anytime."
+      />
 
       {/* Pricing Grid */}
       <section className="py-12 border-t border-[#111111]">
@@ -180,19 +157,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FAQ Accordion Section */}
-      <section className="py-20 lg:py-28 bg-[#111111]/20 border-t border-[#111111]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E53935]">FAQ</span>
-            <h2 className="font-heading text-4xl font-bold uppercase text-white mt-3">
-              ANY QUESTIONS?
-            </h2>
-          </div>
-
-          <FaqAccordion items={pricingFaqs} />
-        </div>
-      </section>
+      <FaqSection items={pricingFaqs} />
     </div>
   );
 }

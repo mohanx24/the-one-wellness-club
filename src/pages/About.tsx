@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
 import { Compass, Heart, Users } from 'lucide-react';
-import FaqAccordion from '../components/FaqAccordion';
+import PageHeader from '../components/shared/PageHeader';
+import FaqSection from '../components/shared/FaqSection';
+import CtaButton from '../components/shared/CtaButton';
 
 const stats = [
   { value: '2,000+', label: 'Active Members' },
@@ -63,35 +64,12 @@ const aboutFaqs = [
 export default function About() {
   return (
     <div className="pt-24 bg-[#0A0A0A] text-white">
-      {/* Hero Header */}
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-bold uppercase tracking-widest text-[#E53935]"
-          >
-            / About Us
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-5xl sm:text-7xl font-bold uppercase tracking-tight mt-4 text-white"
-          >
-            MORE THAN A GYM.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="font-body text-lg text-[#B0B0B0] max-w-2xl mx-auto mt-6"
-          >
-            THE ONE was established in 2018 as Hyderabad\'s premier fitness sanctuary, designed to offer elite level training in an ultra-premium setting.
-          </motion.p>
-        </div>
-      </section>
+      <PageHeader
+        tag="/ About Us"
+        title="MORE THAN A GYM."
+        description="THE ONE was established in 2018 as Hyderabad's premier fitness sanctuary, designed to offer elite level training in an ultra-premium setting."
+        descriptionClassName="font-body text-lg text-[#B0B0B0] max-w-2xl mx-auto mt-6"
+      />
 
       {/* Story Section */}
       <section className="py-16 border-t border-[#111111]">
@@ -213,19 +191,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* FAQ Accordion Section */}
-      <section className="py-20 lg:py-28 bg-[#111111]/20 border-t border-[#111111]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E53935]">FAQ</span>
-            <h2 className="font-heading text-4xl font-bold uppercase text-white mt-3">
-              ANY QUESTIONS?
-            </h2>
-          </div>
-
-          <FaqAccordion items={aboutFaqs} />
-        </div>
-      </section>
+      <FaqSection items={aboutFaqs} />
 
       {/* CTA Footer Block */}
       <section className="py-16 lg:py-24 border-t border-[#111111] text-center bg-[#111111]/30">
@@ -233,12 +199,7 @@ export default function About() {
           <h2 className="font-heading text-4xl sm:text-5xl font-bold uppercase text-white mb-6">
             READY TO BE PART OF THE STORY?
           </h2>
-          <a
-            href="/contact"
-            className="inline-block btn-red-gradient px-8 py-4 rounded-full font-body text-sm font-semibold uppercase tracking-wide text-white"
-          >
-            Join Today
-          </a>
+          <CtaButton to="/contact">Join Today</CtaButton>
         </div>
       </section>
     </div>

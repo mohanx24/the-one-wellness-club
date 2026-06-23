@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { Link } from 'react-router';
 import { motion, useInView } from 'framer-motion';
+import CtaButton from '../components/shared/CtaButton';
 
 export default function CtaBanner() {
   const ref = useRef(null);
@@ -40,12 +40,9 @@ export default function CtaBanner() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Link
-            to="/contact"
-            className="px-8 py-4 rounded-full btn-red-gradient font-body text-sm font-semibold uppercase tracking-wide text-white hover:opacity-90 transition-opacity duration-300 block w-fit mx-auto"
-          >
+          <CtaButton to="/contact" className="hover:opacity-90 transition-opacity duration-300 block w-fit mx-auto">
             Book a Free Consultation
-          </Link>
+          </CtaButton>
         </motion.div>
       </div>
     </section>

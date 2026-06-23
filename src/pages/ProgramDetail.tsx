@@ -1,7 +1,8 @@
-import { useParams, Link } from 'react-router';
+import { useParams } from 'react-router';
 import { CheckCircle2 } from 'lucide-react';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
-import FaqAccordion from '../components/FaqAccordion';
+import FaqSection from '../components/shared/FaqSection';
+import CtaButton from '../components/shared/CtaButton';
 
 interface ProgramContent {
   title: string;
@@ -240,12 +241,9 @@ export default function ProgramDetail({ id }: ProgramDetailProps) {
                 </div>
               </div>
 
-              <Link
-                to="/contact"
-                className="block text-center btn-red-gradient py-3.5 rounded-xl font-body text-xs font-semibold uppercase tracking-wide text-white"
-              >
+              <CtaButton to="/contact" className="!block text-center !py-3.5 !rounded-xl !text-xs w-full">
                 Inquire & Book Session
-              </Link>
+              </CtaButton>
             </div>
           </div>
         </div>
@@ -273,19 +271,12 @@ export default function ProgramDetail({ id }: ProgramDetailProps) {
         </div>
       </section>
 
-      {/* FAQs Section */}
-      <section className="py-20 lg:py-28 bg-[#111111]/10 border-t border-[#111111]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E53935]">FAQs</span>
-            <h2 className="font-heading text-4xl font-bold uppercase text-white mt-3">
-              PROGRAM FAQS
-            </h2>
-          </div>
-
-          <FaqAccordion items={program.faqs} />
-        </div>
-      </section>
+      <FaqSection
+        tag="FAQs"
+        title="PROGRAM FAQS"
+        items={program.faqs}
+        className="py-20 lg:py-28 bg-[#111111]/10 border-t border-[#111111]"
+      />
     </div>
   );
 }

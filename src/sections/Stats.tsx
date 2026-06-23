@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import SectionHeader from '../components/shared/SectionHeader';
 
 interface StatItemProps {
   value: string;
@@ -98,24 +99,13 @@ export default function Stats() {
 
           {/* Right - Stats */}
           <div>
-            {/* Header */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
+            <SectionHeader
+              tag="/ Why THE ONE"
+              title={<>PROOF IS IN{' '}<span className="font-italic-accent text-[#E53935]">the progress.</span></>}
+              description="Every stat here represents a real member, a real goal, and a real result."
+              isInView={isInView}
               className="mb-10"
-            >
-              <p className="font-body text-sm font-medium uppercase tracking-widest text-[#E53935] mb-3">
-                / Why THE ONE
-              </p>
-              <h2 className="font-heading font-bold uppercase text-section-heading text-white mb-2">
-                PROOF IS IN{' '}
-                <span className="font-italic-accent text-[#E53935]">the progress.</span>
-              </h2>
-              <p className="font-body text-base text-[#B0B0B0]">
-                Every stat here represents a real member, a real goal, and a real result.
-              </p>
-            </motion.div>
+            />
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-8 mb-8">

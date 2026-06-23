@@ -3,14 +3,7 @@ import { Link, useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Menu, X } from 'lucide-react';
 import Logo from '../components/Logo';
-
-const navLinks = [
-  { name: 'Programs', href: '/programs' },
-  { name: 'Coaches', href: '/coach' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-];
+import { NAV_LINKS } from '../lib/constants';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,7 +38,7 @@ export default function Navigation() {
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = location.pathname === link.href;
               return (
                 <Link
@@ -106,7 +99,7 @@ export default function Navigation() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-[#0A0A0A] flex flex-col items-center justify-center gap-8 lg:hidden"
           >
-            {navLinks.map((link, index) => {
+            {NAV_LINKS.map((link, index) => {
               const isActive = location.pathname === link.href;
               return (
                 <motion.div

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import PageHeader from '../components/shared/PageHeader';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -29,35 +30,11 @@ export default function ContactPage() {
 
   return (
     <div className="pt-24 bg-[#0A0A0A] text-white">
-      {/* Header */}
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-bold uppercase tracking-widest text-[#E53935]"
-          >
-            / Contact
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-5xl sm:text-7xl font-bold uppercase tracking-tight mt-4 text-white"
-          >
-            LET'S TALK.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="font-body text-base text-[#B0B0B0] max-w-md mx-auto mt-6"
-          >
-            Ready to start your journey? We\'re here — reach out anytime.
-          </motion.p>
-        </div>
-      </section>
+      <PageHeader
+        tag="/ Contact"
+        title="LET'S TALK."
+        description="Ready to start your journey? We're here — reach out anytime."
+      />
 
       {/* Main Grid */}
       <section className="py-12 border-t border-[#111111] pb-24">
