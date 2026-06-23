@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Clock, Users, Calendar } from 'lucide-react';
+import SectionHeader from '../components/shared/SectionHeader';
+import CtaButton from '../components/shared/CtaButton';
 
 const programs = [
   {
@@ -33,23 +35,12 @@ export default function Programs() {
   return (
     <section id="programs" className="py-24 lg:py-32 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <p className="font-body text-sm font-medium uppercase tracking-widest text-[#E53935] mb-3">
-            / Programs
-          </p>
-          <h2 className="font-heading font-bold uppercase text-section-heading text-white mb-3">
-            TRAIN YOUR WAY.
-          </h2>
-          <p className="font-body text-base text-[#B0B0B0]">
-            Choose the path that fits your goals.
-          </p>
-        </motion.div>
+        <SectionHeader
+          tag="/ Programs"
+          title="TRAIN YOUR WAY."
+          description="Choose the path that fits your goals."
+          isInView={isInView}
+        />
 
         {/* Program Cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -106,14 +97,9 @@ export default function Programs() {
           <p className="font-body text-base text-[#B0B0B0] mb-4">
             Not sure where to start?
           </p>
-          <button
-            onClick={() => {
-              document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="btn-red-gradient px-8 py-4 rounded-full font-body text-sm font-semibold uppercase tracking-wide text-white"
-          >
+          <CtaButton onClick={() => document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' })}>
             Get a Free Consultation
-          </button>
+          </CtaButton>
         </motion.div>
       </div>
     </section>

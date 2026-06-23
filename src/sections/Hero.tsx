@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import CtaButton from '../components/shared/CtaButton';
 
 export default function Hero() {
 
@@ -69,14 +70,9 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 1.0 }}
               className="flex flex-wrap gap-4"
             >
-              <button
-                onClick={() => {
-                  document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="btn-red-gradient px-8 py-4 rounded-full font-body text-sm font-semibold uppercase tracking-wide text-white"
-              >
+              <CtaButton onClick={() => document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' })}>
                 Get Started Today
-              </button>
+              </CtaButton>
             </motion.div>
           </div>
 

@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import SectionHeader from '../components/shared/SectionHeader';
 
 const coaches = [
   {
@@ -33,23 +34,12 @@ export default function Coaches() {
   return (
     <section id="coaches" className="py-24 lg:py-32 bg-[#0A0A0A] border-t border-[#111111]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <p className="font-body text-sm font-medium uppercase tracking-widest text-[#E53935] mb-3">
-            / Our Coaches
-          </p>
-          <h2 className="font-heading font-bold uppercase text-section-heading text-white mb-3">
-            MEET THE <span className="font-italic-accent text-[#E53935]">experts.</span>
-          </h2>
-          <p className="font-body text-base text-[#B0B0B0] max-w-md">
-            India's finest fitness minds and celebrity transformation specialists, led by master trainer Kumar Mannava.
-          </p>
-        </motion.div>
+        <SectionHeader
+          tag="/ Our Coaches"
+          title={<>MEET THE <span className="font-italic-accent text-[#E53935]">experts.</span></>}
+          description="India’s finest fitness minds and celebrity transformation specialists, led by master trainer Kumar Mannava."
+          isInView={isInView}
+        />
 
         {/* Coaches Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">

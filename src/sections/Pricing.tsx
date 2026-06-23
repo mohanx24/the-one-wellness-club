@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router';
 import { motion, useInView } from 'framer-motion';
 import { Check } from 'lucide-react';
+import SectionHeader from '../components/shared/SectionHeader';
 
 const plans = [
   {
@@ -54,20 +55,13 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-24 lg:py-32 bg-[#0A0A0A] border-t border-[#111111]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+        <SectionHeader
+          tag="/ Pricing"
+          title="CHOOSE YOUR PLAN."
+          isInView={isInView}
           className="text-center mb-14"
-        >
-          <p className="font-body text-sm font-medium uppercase tracking-widest text-[#E53935] mb-3">
-            / Pricing
-          </p>
-          <h2 className="font-heading font-bold uppercase text-section-heading text-white">
-            CHOOSE YOUR PLAN.
-          </h2>
-        </motion.div>
+          centered
+        />
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">

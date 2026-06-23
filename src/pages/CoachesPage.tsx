@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TrainerModal from '../components/TrainerModal';
+import PageHeader from '../components/shared/PageHeader';
+import CoachCard from '../components/shared/CoachCard';
 
 interface Trainer {
   name: string;
@@ -74,35 +76,12 @@ export default function CoachesPage() {
 
   return (
     <div className="pt-24 bg-[#0A0A0A] text-white">
-      {/* Header */}
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-bold uppercase tracking-widest text-[#E53935]"
-          >
-            / Expert Team
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-5xl sm:text-7xl font-bold uppercase tracking-tight mt-4 text-white"
-          >
-            MEET THE EXPERTS.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="font-body text-base text-[#B0B0B0] max-w-lg mx-auto mt-6"
-          >
-            12+ certified elite coaches ready to guide you every step of the way. Click any coach to view their profile.
-          </motion.p>
-        </div>
-      </section>
+      <PageHeader
+        tag="/ Expert Team"
+        title="MEET THE EXPERTS."
+        description="12+ certified elite coaches ready to guide you every step of the way. Click any coach to view their profile."
+        descriptionClassName="font-body text-base text-[#B0B0B0] max-w-lg mx-auto mt-6"
+      />
 
       {/* Coaches Grid */}
       <section className="py-12 border-t border-[#111111] pb-24">
@@ -115,26 +94,15 @@ export default function CoachesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                onClick={() => setSelectedTrainer(coach)}
-                className="bg-[#111111] border border-[#222222] rounded-xl overflow-hidden group hover:border-[#E53935]/40 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               >
-                <div className="aspect-[3/4] overflow-hidden relative">
-                  <img
-                    src={coach.image}
-                    alt={coach.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 space-y-1">
-                    <p className="text-[9px] font-bold text-[#E53935] uppercase tracking-widest">{coach.role}</p>
-                    <h4 className="font-heading text-lg sm:text-xl font-bold uppercase text-white">
-                      {coach.name}
-                    </h4>
-                    <p className="text-[10px] text-[#B0B0B0] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      View Profile →
-                    </p>
-                  </div>
-                </div>
+                <CoachCard
+                  name={coach.name}
+                  role={coach.role}
+                  image={coach.image}
+                  onClick={() => setSelectedTrainer(coach)}
+                  showViewProfile
+                  className="hover:-translate-y-2"
+                />
               </motion.div>
             ))}
           </div>

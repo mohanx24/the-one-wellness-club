@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 import { Clock, Users, Flame, Dumbbell } from 'lucide-react';
+import PageHeader from '../components/shared/PageHeader';
+import CoachCard from '../components/shared/CoachCard';
+import CtaButton from '../components/shared/CtaButton';
 
 const programsList = [
   {
@@ -56,27 +59,10 @@ const featuredCoaches = [
 export default function ProgramsPage() {
   return (
     <div className="pt-24 bg-[#0A0A0A] text-white">
-      {/* Header */}
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-bold uppercase tracking-widest text-[#E53935]"
-          >
-            / Disciplines
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-5xl sm:text-7xl font-bold uppercase tracking-tight mt-4 text-white"
-          >
-            FIND YOUR PERFECT FIT.
-          </motion.h1>
-        </div>
-      </section>
+      <PageHeader
+        tag="/ Disciplines"
+        title="FIND YOUR PERFECT FIT."
+      />
 
       {/* Programs Grid */}
       <section className="py-12 border-t border-[#111111]">
@@ -157,12 +143,7 @@ export default function ProgramsPage() {
       <section className="py-16 text-center border-t border-[#111111]">
         <div className="max-w-4xl mx-auto px-4 space-y-4">
           <p className="font-body text-base text-[#B0B0B0]">Not sure which program is right for you?</p>
-          <Link
-            to="/contact"
-            className="inline-block btn-red-gradient px-8 py-4 rounded-full font-body text-sm font-semibold uppercase tracking-wide text-white"
-          >
-            Get a Free Consultation
-          </Link>
+          <CtaButton to="/contact">Get a Free Consultation</CtaButton>
         </div>
       </section>
 
@@ -186,25 +167,12 @@ export default function ProgramsPage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredCoaches.map((coach, index) => (
-              <div
+              <CoachCard
                 key={index}
-                className="bg-[#111111] border border-[#222222] rounded-xl overflow-hidden group hover:border-[#E53935]/40 transition-all duration-300"
-              >
-                <div className="aspect-[3/4] overflow-hidden relative">
-                  <img
-                    src={coach.image}
-                    alt={coach.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-[9px] font-bold text-[#E53935] uppercase tracking-widest">{coach.role}</p>
-                    <h4 className="font-heading text-lg sm:text-xl font-bold uppercase text-white mt-1">
-                      {coach.name}
-                    </h4>
-                  </div>
-                </div>
-              </div>
+                name={coach.name}
+                role={coach.role}
+                image={coach.image}
+              />
             ))}
           </div>
         </div>

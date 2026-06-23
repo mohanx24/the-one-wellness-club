@@ -1,14 +1,7 @@
 import { MapPin, Phone, Clock, Instagram, Twitter, Youtube } from 'lucide-react';
 import { Link } from 'react-router';
 import Logo from '../components/Logo';
-
-const pageLinks = [
-  { name: 'Programs', href: '/programs' },
-  { name: 'Coaches', href: '/coach' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-];
+import { NAV_LINKS } from '../lib/constants';
 
 export default function Footer() {
   return (
@@ -49,7 +42,7 @@ export default function Footer() {
               Pages
             </p>
             <ul className="space-y-3">
-              {pageLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
