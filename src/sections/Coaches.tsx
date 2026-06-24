@@ -1,6 +1,5 @@
-import { useRef } from 'react';
 import { Link } from 'react-router';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const coaches = [
@@ -27,16 +26,14 @@ const coaches = [
 ];
 
 export default function Coaches() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
   return (
     <section id="coaches" className="py-24 lg:py-32 bg-[#0A0A0A] border-t border-[#111111]/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
@@ -57,7 +54,8 @@ export default function Coaches() {
             <motion.div
               key={coach.name}
               initial={{ opacity: 0, y: 80 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.8, delay: 0.15 * index }}
               className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#111111] cursor-pointer"
             >
@@ -87,7 +85,8 @@ export default function Coaches() {
         {/* View All Link */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >

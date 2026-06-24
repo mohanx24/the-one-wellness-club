@@ -1,6 +1,5 @@
-import { useRef } from 'react';
 import { Link } from 'react-router';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 const plans = [
@@ -48,16 +47,14 @@ const plans = [
 ];
 
 export default function Pricing() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
   return (
     <section id="pricing" className="py-24 lg:py-32 bg-[#0A0A0A] border-t border-[#111111]/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
@@ -75,7 +72,8 @@ export default function Pricing() {
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 60 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{
                 duration: 0.7,
                 delay: plan.popular ? 0.2 : 0.15 * index,
@@ -160,7 +158,8 @@ export default function Pricing() {
         {/* Disclaimer */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center font-body text-sm text-[#666666]"
         >
