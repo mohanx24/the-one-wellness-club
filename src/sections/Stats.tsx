@@ -51,7 +51,7 @@ function StatItem({ value, label, delay, isInView }: StatItemProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay: delay / 1000 }}
       className="text-center"
     >
@@ -83,7 +83,7 @@ export default function Stats() {
           {/* Left - Image */}
           <motion.div
             initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
-            animate={isInView ? { opacity: 1, clipPath: 'inset(0 0% 0 0)' } : {}}
+            animate={isInView ? { opacity: 1, clipPath: 'inset(0 0% 0 0)' } : { opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
             transition={{ duration: 1, ease: 'easeOut' }}
             className="relative aspect-[3/4] rounded-xl overflow-hidden"
           >
@@ -101,7 +101,7 @@ export default function Stats() {
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6 }}
               className="mb-10"
             >
@@ -133,7 +133,7 @@ export default function Stats() {
             {/* Tagline */}
             <motion.p
               initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
               className="font-body text-base italic text-[#B0B0B0] text-center"
             >

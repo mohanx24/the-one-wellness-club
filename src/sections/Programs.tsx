@@ -36,7 +36,7 @@ export default function Programs() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
@@ -57,7 +57,7 @@ export default function Programs() {
             <motion.div
               key={program.title}
               initial={{ opacity: 0, y: 60 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
               transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
               className="card-hover bg-[#111111] border border-[#222222] rounded-xl overflow-hidden"
             >
@@ -99,7 +99,7 @@ export default function Programs() {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center"
         >

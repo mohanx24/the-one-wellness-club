@@ -36,7 +36,7 @@ export default function Coaches() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
@@ -57,7 +57,7 @@ export default function Coaches() {
             <motion.div
               key={coach.name}
               initial={{ opacity: 0, y: 80 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
               transition={{ duration: 0.8, delay: 0.15 * index }}
               className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#111111] cursor-pointer"
             >
@@ -87,7 +87,7 @@ export default function Coaches() {
         {/* View All Link */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >

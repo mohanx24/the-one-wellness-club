@@ -57,7 +57,7 @@ export default function Pricing() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
@@ -75,7 +75,7 @@ export default function Pricing() {
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 60 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
               transition={{
                 duration: 0.7,
                 delay: plan.popular ? 0.2 : 0.15 * index,
@@ -160,7 +160,7 @@ export default function Pricing() {
         {/* Disclaimer */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center font-body text-sm text-[#666666]"
         >

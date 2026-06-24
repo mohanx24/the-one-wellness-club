@@ -10,7 +10,7 @@ export default function FinalCta() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8 }}
           className="relative rounded-3xl overflow-hidden p-12 lg:p-20 text-center"
           style={{
@@ -26,7 +26,7 @@ export default function FinalCta() {
           <div className="relative z-10">
             <motion.h2
               initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="font-heading font-bold uppercase text-3xl sm:text-4xl lg:text-5xl text-white mb-8"
             >
@@ -35,7 +35,7 @@ export default function FinalCta() {
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <button
