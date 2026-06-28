@@ -39,7 +39,7 @@ export default function CtaBanner() {
         >
           <Link
             to="/contact"
-            className="px-8 py-4 rounded-full btn-red-gradient font-body text-sm font-semibold uppercase tracking-wide text-white hover:opacity-90 transition-opacity duration-300 block w-fit mx-auto"
+            className="px-8 py-4 rounded-full btn-red-gradient font-body text-sm font-semibold uppercase tracking-wide text-white block w-fit mx-auto"
           >
             Book a Free Consultation
           </Link>

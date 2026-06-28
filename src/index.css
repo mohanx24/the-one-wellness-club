@@ -89,6 +89,43 @@
   animation: marquee 30s linear infinite;
 }
 
+/* Testimonial Marquee Animations */
+@keyframes marquee-scroll-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-left var(--speed, 45s) linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-right var(--speed, 45s) linear infinite;
+}
+
+.marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* Glassmorphic Testimonial Card */
+.glass-testimonial-card {
+  background: rgba(17, 17, 17, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
 /* Count Up Animation */
 @keyframes countUp {
   from {
@@ -196,7 +233,9 @@
     transition-duration: 0.01ms !important;
   }
 
-  .animate-marquee {
+  .animate-marquee,
+  .animate-marquee-left,
+  .animate-marquee-right {
     animation: none;
   }
 }
