@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { handleImageError } from '../lib/utils';
 
 interface StatItemProps {
   value: string;
@@ -93,6 +94,7 @@ export default function Stats() {
               src="/images/athlete-corridor.jpg"
               alt="Athlete training"
               className="w-full h-full object-cover"
+              onError={handleImageError}
             />
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/40 to-transparent" />

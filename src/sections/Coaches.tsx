@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { handleImageError } from '../lib/utils';
 
 const coaches = [
   {
@@ -64,6 +65,7 @@ export default function Coaches() {
                 src={coach.image}
                 alt={coach.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={handleImageError}
               />
 
               {/* Overlay */}

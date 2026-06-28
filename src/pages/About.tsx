@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Compass, Heart, Users } from 'lucide-react';
+import { handleImageError } from '../lib/utils';
 import FaqAccordion from '../components/FaqAccordion';
 
 const stats = [
@@ -103,6 +104,7 @@ export default function About() {
                 src="/images/athlete-corridor.jpg"
                 alt="Gym history"
                 className="w-full h-full object-cover"
+                onError={handleImageError}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>

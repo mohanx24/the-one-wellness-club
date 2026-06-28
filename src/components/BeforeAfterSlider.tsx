@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { handleImageError } from '../lib/utils';
 
 interface TransformationData {
   name: string;
@@ -86,6 +87,7 @@ export default function BeforeAfterSlider() {
               alt="After Transformation"
               className="absolute inset-0 w-full h-full object-cover"
               draggable="false"
+              onError={handleImageError}
             />
             <div className="absolute right-4 bottom-4 z-10 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 text-xs font-bold uppercase tracking-widest text-[#E53935]">
               AFTER
@@ -102,6 +104,7 @@ export default function BeforeAfterSlider() {
                 className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-125"
                 style={{ width: '100%', height: '100%' }}
                 draggable="false"
+                onError={handleImageError}
               />
               <div className="absolute left-4 bottom-4 z-10 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 text-xs font-bold uppercase tracking-widest text-white">
                 BEFORE
